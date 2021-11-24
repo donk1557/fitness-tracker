@@ -12,9 +12,9 @@ router.post('/workouts', (req,res) => {
     res.status(404).json(err);
   });
     
-  });
+});
   
-  router.put('/workouts/:id', ({body, params}, res) => {
+router.put('/workouts/:id', ({body, params}, res) => {
     Routine.findOneandUpdate(params.id, { $push: { exercises: body } }, { new: true, runValidators: true })
     .then(dbWorkout => {
       res.json(dbWorkout);
@@ -23,9 +23,9 @@ router.post('/workouts', (req,res) => {
       res.status(404).json(err);
     });
     
-  });
+});
 
-  router.get('/api/workouts/range', (req, res) => {
+router.get('/api/workouts/range', (req, res) => {
     Workout.aggregate([
       {
         $addFields: {
@@ -43,6 +43,6 @@ router.post('/workouts', (req,res) => {
       .catch((err) => {
         res.json(err);
       });
-  });
+});
   
-  module.exports = router;
+ module.exports = router;
